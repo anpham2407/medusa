@@ -2,6 +2,7 @@ import { Router } from "express";
 import { wrapHandler } from "@medusajs/medusa";
 import onboardingRoutes from "./onboarding";
 import customRouteHandler from "./custom-route-handler";
+import productMediaRoutes from "./product-media"
 
 // Initialize a custom router
 const router = Router();
@@ -15,4 +16,5 @@ export function attachAdminRoutes(adminRouter: Router) {
 
   // Attach routes for onboarding experience, defined separately
   onboardingRoutes(adminRouter);
+  productMediaRoutes(adminRouter);
 }

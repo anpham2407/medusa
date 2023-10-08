@@ -29,7 +29,7 @@ const OrderDetailNextjs = () => {
           >
             <div className="mr-4">
               <div className="bg-ui-bg-base rounded-lg border border-ui-border-strong p-1 flex justify-center items-center">
-                <Badge type="icon">
+                <Badge>
                   <SquaresPlusSolid />
                 </Badge>
               </div>
@@ -54,7 +54,7 @@ const OrderDetailNextjs = () => {
           >
             <div className="mr-4">
               <div className="bg-ui-bg-base rounded-lg border border-ui-border-strong p-1 flex justify-center items-center">
-                <Badge type="icon">
+                <Badge>
                   <CurrencyDollarSolid />
                 </Badge>
               </div>
@@ -79,7 +79,7 @@ const OrderDetailNextjs = () => {
           >
             <div className="mr-4">
               <div className="bg-ui-bg-base rounded-lg border border-ui-border-strong p-1 flex justify-center items-center">
-                <Badge type="icon">
+                <Badge>
                   <NextJs />
                 </Badge>
               </div>

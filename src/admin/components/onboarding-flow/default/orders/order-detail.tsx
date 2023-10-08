@@ -28,7 +28,7 @@ const OrderDetailDefault = () => {
           >
             <div className="mr-4">
               <div className="bg-ui-bg-base rounded-lg border border-ui-border-strong p-1 flex justify-center items-center">
-                <Badge type="icon">
+                <Badge>
                   <CurrencyDollarSolid />
                 </Badge>
               </div>
@@ -53,7 +53,7 @@ const OrderDetailDefault = () => {
           >
             <div className="mr-4">
               <div className="bg-ui-bg-base rounded-lg border border-ui-border-strong p-1 flex justify-center items-center">
-                <Badge type="icon">
+                <Badge>
                   <ComputerDesktopSolid />
                 </Badge>
               </div>
@@ -78,7 +78,7 @@ const OrderDetailDefault = () => {
           >
             <div className="mr-4">
               <div className="bg-ui-bg-base rounded-lg border border-ui-border-strong p-1 flex justify-center items-center">
-                <Badge type="icon">
+                <Badge>
                   <ToolsSolid />
                 </Badge>
               </div>
