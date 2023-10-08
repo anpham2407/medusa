@@ -4,8 +4,6 @@ import onboardingRoutes from "./onboarding";
 import postRoutes from "./post";
 import authorRoutes from "./author";
 import customRouteHandler from "./custom-route-handler";
-import AuthorService from "src/services/author";
-import { Author } from "src/models/author";
 
 // Initialize a custom router
 const router = Router();

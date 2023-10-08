@@ -15,13 +15,13 @@
   "scripts": {
     "clean": "cross-env ./node_modules/.bin/rimraf dist",
     "build": "cross-env npm run clean && npm run build:server && npm run build:admin",
-    "build:server": "cross-env npm run clean && tsc -p tsconfig.json",
+    "build:server": "cross-env npm run clean && tsc -p tsconfig.server.json",
     "build:admin": "cross-env medusa-admin build",
     "watch": "cross-env tsc --watch",
     "test": "cross-env jest",
     "seed": "cross-env medusa seed -f ./data/seed.json",
     "start": "cross-env npm run build && medusa start",
-    "start:custom": "cross-env npm run build && node --preserve-symlinks --trace-warnings index.js",
+    "start:custom": "cross-env npm run build && node --preserve-symlinks index.js",
     "dev": "cross-env npm run build:server && medusa develop"
   },
   "dependencies": {
@@ -32,9 +32,9 @@
     "@medusajs/event-bus-redis": "^1.8.9",
     "@medusajs/file-local": "^1.0.2",
     "@medusajs/icons": "^1.0.0",
-    "@medusajs/medusa": "^1.16.0",
+    "@medusajs/medusa": "^1.17.1",
     "@medusajs/ui": "^1.0.0",
-    "@tanstack/react-query": "4.22.0",
+    "@tanstack/react-query": "^4.22.0",
     "babel-preset-medusa-package": "^1.1.13",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -45,6 +45,7 @@
     "medusa-payment-manual": "^1.0.24",
     "medusa-payment-stripe": "^6.0.4",
     "medusa-plugin-strapi": "^1.0.9-dev",
+    "medusa-react": "^9.0.7",
     "prism-react-renderer": "^2.0.4",
     "typeorm": "^0.3.16"
   },
