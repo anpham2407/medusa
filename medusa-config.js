@@ -61,6 +61,13 @@ const plugins = [
       strapi_port: process.env.STRAPI_PORT, // optional
       strapi_protocol: process.env.STRAPI_PROTOCOL, // optional
     },
+  },
+  {
+    resolve: `medusa-telegram-notification`,
+    options: {
+      botToken: process.env.NOTIFICATION_TELEGRAM_BOT_TOKEN,
+      debug: true || process.env.NODE_ENV === "development",
+    },
   }
 ];
 

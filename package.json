@@ -46,6 +46,7 @@
     "medusa-payment-stripe": "^6.0.4",
     "medusa-plugin-strapi": "^1.0.9-dev",
     "medusa-react": "^9.0.7",
+    "medusa-telegram-notification": "^0.0.3",
     "prism-react-renderer": "^2.0.4",
     "typeorm": "^0.3.16"
   },
