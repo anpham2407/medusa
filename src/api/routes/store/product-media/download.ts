@@ -52,9 +52,6 @@ export default async (req: Request, res: Response) => {
     variant_id: variant.id,
   })
 
-  const fileService = req.scope.resolve<
-    AbstractFileService
-  >("fileService")
-  const file = `./uploads/1696821407971-palmgarden.jpg`;
-  res.download(file);
+  const file = `./uploads/${productMedias[0].file_key}`;
+  res.download(file, productMedias[0].file_key);
 }
