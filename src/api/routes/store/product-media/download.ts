@@ -55,13 +55,6 @@ export default async (req: Request, res: Response) => {
   const fileService = req.scope.resolve<
     AbstractFileService
   >("fileService")
-
-  res.json({
-    url: await fileService.getPresignedDownloadUrl({
-      fileKey: productMedias[0].file_key,
-      isPrivate: true,
-    }),
-    name: productMedias[0].name,
-    mime_type: productMedias[0].mime_type,
-  })
+  const file = `./uploads/1696821407971-palmgarden.jpg`;
+  res.download(file);
 }
