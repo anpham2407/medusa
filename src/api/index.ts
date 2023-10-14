@@ -5,6 +5,7 @@ import { authenticate, ConfigModule } from "@medusajs/medusa";
 import { getConfigFile } from "medusa-core-utils";
 import { attachStoreRoutes } from "./routes/store";
 import { attachAdminRoutes } from "./routes/admin";
+import { registerLoggedInUser } from "./middlewares/logged-in-user"
 
 export default (rootDirectory: string): Router | Router[] => {
   // Read currently-loaded medusa config
@@ -35,7 +36,8 @@ export default (rootDirectory: string): Router | Router[] => {
   // Add authentication to all admin routes *except* auth and account invite ones
   router.use(
     /\/admin\/((?!auth)(?!invites)(?!users\/reset-password)(?!users\/password-token).*)/,
-    authenticate()
+    authenticate(),
+    registerLoggedInUser
   );
 
   // Set up routers for store and admin endpoints
