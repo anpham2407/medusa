@@ -2,14 +2,26 @@ import {
     AbstractFileService, 
     EventBusService, 
     OrderService,
+    ProductService,
     ProductVariant,
 } from "@medusajs/medusa"
+import LineItemRepository from "@medusajs/medusa/dist/repositories/line-item"
+import OrderRepository from "@medusajs/medusa/dist/repositories/order"
+import PaymentRepository from "@medusajs/medusa/dist/repositories/payment"
+import ShippingMethodRepository from "@medusajs/medusa/dist/repositories/shipping-method"
+import { EntityManager } from "typeorm"
 
 type InjectedDependencies = {
     eventBusService: EventBusService
     orderService: OrderService
     // sendgridService: any
     fileService: AbstractFileService
+    orderRepository: typeof OrderRepository;
+    productService: ProductService;
+    manager: EntityManager;
+    lineItemRepository: typeof LineItemRepository;
+    shippingMethodRepository: typeof ShippingMethodRepository;
+    paymentRepository: typeof PaymentRepository;
 }
 
 interface ProductVariantMedia extends Omit<ProductVariant, 'product_medias'> {
@@ -20,10 +32,23 @@ interface ProductVariantMedia extends Omit<ProductVariant, 'product_medias'> {
     protected readonly orderService_: OrderService
     // protected readonly sendgridService_: any
     protected readonly fileService_: AbstractFileService
+
+    private readonly manager: EntityManager;
+    private readonly eventBusService: EventBusService;
+    private readonly orderService: OrderService;
+    private readonly orderRepository: typeof OrderRepository;
+    private readonly productService: ProductService;
+    private readonly lineItemRepository: typeof LineItemRepository;
+    private readonly shippingMethodRepository: typeof ShippingMethodRepository;
   
     constructor({ 
       eventBusService, 
-      orderService, 
+      orderService,
+      orderRepository,
+      productService,
+      manager,
+      lineItemRepository,
+      shippingMethodRepository,
       // sendgridService,
       fileService,
     }: InjectedDependencies) {

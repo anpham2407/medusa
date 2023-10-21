@@ -7,7 +7,9 @@ export async function registerLoggedInUser(req, res, next) {
   if (req.user && req.user.userId) {
     const userService = 
       req.scope.resolve("userService") as UserService
-    loggedInUser = await userService.retrieve(req.user.userId)
+      loggedInUser = await userService.retrieve(req.user.userId, {
+        select: ['id', 'store_id'],
+    });
   }
 
   req.scope.register({

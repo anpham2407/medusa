@@ -10,7 +10,7 @@ export class OrderChanged1697261086988 implements MigrationInterface {
         `;
         await queryRunner.query(query);
     }
-
+    
     public async down(queryRunner: QueryRunner): Promise<void> {
         const query = `
             ALTER TABLE public."order" DROP COLUMN "store_id";
