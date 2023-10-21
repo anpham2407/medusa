@@ -1,37 +1,40 @@
-import { 
-    AbstractFileService, 
-    EventBusService, 
-    OrderService,
+import {
+  AbstractFileService,
+  EventBusService,
+  OrderService,
     ProductService,
-    ProductVariant,
+  ProductVariant,
 } from "@medusajs/medusa"
 import LineItemRepository from "@medusajs/medusa/dist/repositories/line-item"
 import OrderRepository from "@medusajs/medusa/dist/repositories/order"
 import PaymentRepository from "@medusajs/medusa/dist/repositories/payment"
 import ShippingMethodRepository from "@medusajs/medusa/dist/repositories/shipping-method"
 import { EntityManager } from "typeorm"
+import MyNotificationService from "../services/my-notification"
 
 type InjectedDependencies = {
-    eventBusService: EventBusService
-    orderService: OrderService
-    // sendgridService: any
-    fileService: AbstractFileService
+  eventBusService: EventBusService
+  orderService: OrderService
+  // sendgridService: any
+  fileService: AbstractFileService
     orderRepository: typeof OrderRepository;
     productService: ProductService;
     manager: EntityManager;
     lineItemRepository: typeof LineItemRepository;
     shippingMethodRepository: typeof ShippingMethodRepository;
     paymentRepository: typeof PaymentRepository;
+  myNotificationService: MyNotificationService
 }
 
 interface ProductVariantMedia extends Omit<ProductVariant, 'product_medias'> {
-    product_medias?: string[];
+  product_medias?: string[];
 }
   
   class HandleOrderSubscribers {
     protected readonly orderService_: OrderService
     // protected readonly sendgridService_: any
     protected readonly fileService_: AbstractFileService
+    protected readonly myNotificationService_: any;
 
     private readonly manager: EntityManager;
     private readonly eventBusService: EventBusService;
@@ -51,10 +54,12 @@ interface ProductVariantMedia extends Omit<ProductVariant, 'product_medias'> {
       shippingMethodRepository,
       // sendgridService,
       fileService,
+      myNotificationService
     }: InjectedDependencies) {
       this.orderService_ = orderService
       // this.sendgridService_ = sendgridService
       this.fileService_ = fileService
+      this.myNotificationService_ = myNotificationService
       eventBusService.subscribe(
         "order.placed", 
         this.handleOrderPlaced
@@ -94,7 +99,7 @@ interface ProductVariantMedia extends Omit<ProductVariant, 'product_medias'> {
           }),
         ])
       }
-      
+      await this.myNotificationService_.handleOrderPlaced(order);
       if (!urls.length) {
         return
       }
@@ -109,7 +114,7 @@ interface ProductVariantMedia extends Omit<ProductVariant, 'product_medias'> {
     //       digital_download_urls: urls,
     //     },
     //   })
-    }
   }
-  
-  export default HandleOrderSubscribers
+}
+
+export default HandleOrderSubscribers
